@@ -1,6 +1,10 @@
 
 # Tenable xtract
 
+<p align="center">
+  <img src=".github/banner.png">
+</p>
+
 Tenable Xtract is a script that allows users to securely and efficiently export asset and agent data from the Tenable.IO platform. The following is a summary of how the program works:
 
 **Client Selection**: The user selects one of the pre-configured. Each client uses its own set of API credentials defined via environment variables.
