@@ -1,5 +1,5 @@
 
-# Tenable xtract
+# Tenable Xtract
 
 <p align="center">
   <img src=".github/banner.png">
