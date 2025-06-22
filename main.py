@@ -63,7 +63,6 @@ def main():
         print("[\033[1;31m!\033[m] Falha na autenticação com a API.")
         return
 
-    # Mostrar total de agentes e assets disponíveis (antes do menu)
     try:
         agentes = list(tio.agents.list())
         print(f"\n[\033[1;32m✓\033[m] Total de agentes disponíveis na console: \033[1m{len(agentes)}\033[0m")
