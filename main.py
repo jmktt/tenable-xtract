@@ -7,13 +7,13 @@ from exporters import exportar_assets, exportar_agents, validar_credenciais
 
 banner = '''
 
-               ▐▄• ▄ ▄▄▄▄▄▄▄▄   ▄▄▄·  ▄▄· ▄▄▄▄▄
-                █▌█▌▪•██  ▀▄ █·▐█ ▀█ ▐█ ▌▪•██  
-                ·██·  ▐█.▪▐▀▀▄ ▄█▀▀█ ██ ▄▄ ▐█.▪
-               ▪▐█·█▌ ▐█▌·▐█•█▌▐█ ▪▐▌▐███▌ ▐█▌·
-               •▀▀ ▀▀ ▀▀▀ .▀  ▀ ▀  ▀ ·▀▀▀  ▀▀▀ 
+            ▐▄• ▄ ▄▄▄▄▄▄▄▄   ▄▄▄·  ▄▄· ▄▄▄▄▄
+             █▌█▌▪•██  ▀▄ █·▐█ ▀█ ▐█ ▌▪•██  
+             ·██·  ▐█.▪▐▀▀▄ ▄█▀▀█ ██ ▄▄ ▐█.▪
+            ▪▐█·█▌ ▐█▌·▐█•█▌▐█ ▪▐▌▐███▌ ▐█▌·
+            •▀▀ ▀▀ ▀▀▀ .▀  ▀ ▀  ▀ ·▀▀▀  ▀▀▀ 
 
-[...]          Tenable Assets & Agents Exporter       [...]                                                                           
+[...]       Tenable Assets & Agents Exporter       [...]                                                                           
 '''
 
 def main():
