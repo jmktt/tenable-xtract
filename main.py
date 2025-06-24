@@ -7,20 +7,20 @@ from exporters import exportar_assets, exportar_agents, validar_credenciais
 
 banner = '''
 
-            ▐▄• ▄ ▄▄▄▄▄▄▄▄   ▄▄▄·  ▄▄· ▄▄▄▄▄
-             █▌█▌▪•██  ▀▄ █·▐█ ▀█ ▐█ ▌▪•██  
-             ·██·  ▐█.▪▐▀▀▄ ▄█▀▀█ ██ ▄▄ ▐█.▪
-            ▪▐█·█▌ ▐█▌·▐█•█▌▐█ ▪▐▌▐███▌ ▐█▌·
-            •▀▀ ▀▀ ▀▀▀ .▀  ▀ ▀  ▀ ·▀▀▀  ▀▀▀ 
+               ▐▄• ▄ ▄▄▄▄▄▄▄▄   ▄▄▄·  ▄▄· ▄▄▄▄▄
+                █▌█▌▪•██  ▀▄ █·▐█ ▀█ ▐█ ▌▪•██  
+                ·██·  ▐█.▪▐▀▀▄ ▄█▀▀█ ██ ▄▄ ▐█.▪
+               ▪▐█·█▌ ▐█▌·▐█•█▌▐█ ▪▐▌▐███▌ ▐█▌·
+               •▀▀ ▀▀ ▀▀▀ .▀  ▀ ▀  ▀ ·▀▀▀  ▀▀▀ 
 
-[...]       Tenable Assets & Agents Exporter       [...]                                                                           
+[...]          Tenable Assets & Agents Exporter       [...]                                                                           
 '''
 
 def main():
     parser = argparse.ArgumentParser(description="Exportador de Assets e Agents da Tenable")
     parser.add_argument('-c', '--cliente', help='Nome do cliente', required=False)
     parser.add_argument('-t', '--tipo', choices=['assets', 'agents'], help='Tipo de exportação', required=False)
-    parser.add_argument('-f', '--filtro', choices=['offline', 'nogroup', 'all', 'offline_nogroup_compare'], help='Filtro para agentes', required=False)
+    parser.add_argument('-f', '--filtro', choices=['offline', 'nogroup', 'all', 'compare'], help='Filtro para agentes', required=False)
 
     args = parser.parse_args()
 
