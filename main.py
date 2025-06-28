@@ -1,41 +1,51 @@
 import os
 import argparse
 from tenable.io import TenableIO
+from pystyle import *
+import random
 
 from config import CLIENTES
-from exporters import exportar_assets, exportar_agents, validar_credenciais
+from exporters import exportar_assets, exportar_agents
+from utils import validar_credenciais, padronizar_excel_agents, banners, banner,banner1
 
-banner = '''
-
-               ▐▄• ▄ ▄▄▄▄▄▄▄▄   ▄▄▄·  ▄▄· ▄▄▄▄▄
-                █▌█▌▪•██  ▀▄ █·▐█ ▀█ ▐█ ▌▪•██  
-                ·██·  ▐█.▪▐▀▀▄ ▄█▀▀█ ██ ▄▄ ▐█.▪
-               ▪▐█·█▌ ▐█▌·▐█•█▌▐█ ▪▐▌▐███▌ ▐█▌·
-               •▀▀ ▀▀ ▀▀▀ .▀  ▀ ▀  ▀ ·▀▀▀  ▀▀▀ 
-
-[...]          Tenable Assets & Agents Exporter       [...]                                                                           
-'''
 
 def main():
     parser = argparse.ArgumentParser(description="Exportador de Assets e Agents da Tenable")
     parser.add_argument('-c', '--cliente', help='Nome do cliente', required=False)
     parser.add_argument('-t', '--tipo', choices=['assets', 'agents'], help='Tipo de exportação', required=False)
     parser.add_argument('-f', '--filtro', choices=['offline', 'nogroup', 'all', 'compare'], help='Filtro para agentes', required=False)
+    parser.add_argument('-p', '--padronizar',help='Caminho do arquivo CSV ou XLSX para padronizar a planilha Agents',required=False, metavar='ARQUIVO')
 
     args = parser.parse_args()
 
-    print(banner)
+    selected_banner = random.choice(banners)
+    if selected_banner == banner:
+        print(Colorate.DiagonalBackwards(Colors.blue_to_cyan, "{}".format(selected_banner), 2))
+    elif selected_banner == banner1:
+        print(Colorate.DiagonalBackwards(Colors.red_to_black, "{}".format(selected_banner), 2))
+    else:
+        print(selected_banner)
+    print("[...]          Tenable Assets & Agents Exporter       [...]\n")
+
+    if args.padronizar:
+        padronizar_excel_agents(args.padronizar)
+        return
 
     if not args.cliente:
         print("Clientes disponíveis:")
         for i, cliente in enumerate(CLIENTES):
             print(f"  [{i + 1}] {cliente}")
         print("  [0] Sair")
+        print("\n  [99] Padronizar Excel (Agents)")
 
         try:
             escolha = int(input("\nEscolha um cliente: "))
             if escolha == 0:
                 print("Saindo...")
+                return
+            elif escolha == 99:
+                caminho = input("Informe o caminho do arquivo .csv ou .xlsx: ").strip()
+                padronizar_excel_agents(caminho)
                 return
             cliente = list(CLIENTES.keys())[escolha - 1]
         except:
