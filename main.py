@@ -104,7 +104,7 @@ def main():
                 '1': 'offline',
                 '2': 'nogroup',
                 '3': 'all',
-                '4': 'offline_nogroup_compare'
+                '4': 'compare'
             }
             filtro = filtros_map.get(escolha_filtro, 'offline')
         exportar_agents(tio, output_folder, cliente, filtro=filtro)
