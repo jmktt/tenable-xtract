@@ -2,3 +2,4 @@ tenable
 pandas
 xlsxwriter
 python-dotenv
+GitPython
