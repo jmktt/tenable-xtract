@@ -143,6 +143,7 @@ def main():
     elif tipo == 'agents':
         filtro = args.filtro
         if not filtro:
+<<<<<<< HEAD
             while True: 
                 print("\nEscolha o filtro para agentes:")
                 print("[1] Offline")
@@ -206,6 +207,24 @@ def main():
                 include_exploitdb = False
 
         exportar_vulnerabilidades(tio, output_folder, cliente, filtro_severidade=severidade, last_found_days=ultimos_dias, include_exploitdb=include_exploitdb)
+=======
+            print("\nEscolha o filtro para agentes:")
+            print("[1] Offline")
+            print("[2] Sem grupo")
+            print("[3] Todos")
+            print("[4] Offline + Sem grupo (comparar)")
+            escolha_filtro = input("Escolha (1-4): ").strip()
+            filtros_map = {
+                '1': 'offline',
+                '2': 'nogroup',
+                '3': 'all',
+                '4': 'compare'
+            }
+            filtro = filtros_map.get(escolha_filtro, 'offline')
+        exportar_agents(tio, output_folder, cliente, filtro=filtro)
+    else:
+        print("[\033[1;31m!\033[m] Tipo de exportação inválido.")
+>>>>>>> f199d526d89285547c234d98f7b464ca5fa26cfb
 
 if __name__ == "__main__":
     try:
