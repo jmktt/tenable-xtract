@@ -1,4 +1,5 @@
 
+
 # Tenable Xtract
 
 <p align="center">
@@ -20,7 +21,25 @@ Tenable Xtract is a script that allows users to securely and efficiently export 
 - **All agents**
 - **Offline and No Group (Compare)**: This option generates multiple Excel sheets comparing agents that are offline, without group, in both, or in either condition.
 
+**Vulnerability Export:**
+- Exports vulnerabilities based on specified filters:
+	- **Severity**: Filter by `critical`, `high`, `medium`, `low`, or `info`.
+    - **Last Found Days**: Export vulnerabilities discovered within a specified number of recent days.
+    - **Exploit-DB Integration**: Optionally includes correlation with Exploit-DB data, providing information on publicly available exploits for identified CVEs.
+    
+**Software Inventory**:
+   - Gathers software inventory data by leveraging specific Tenable.io plugins (e.g., Windows Software, Linux Packages).
+   - Consolidates software information per host (Hostname, IP Address, OS).
+   - Exports categorized software lists (Windows, Linux, All) to separate sheets within an Excel file.
+
 > Excel Formatting: All exports are saved as Excel spreadsheets with
 > dynamic column sizing and stylized tables for clarity and
 > presentation. If Excel export fails, the script automatically falls
 > back to a CSV version.
+
+## Usage
+
+Run the `main.py` script:
+
+```bash
+python main.py
