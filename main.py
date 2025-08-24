@@ -6,14 +6,15 @@ import random
 
 from config import CLIENTES, banners, banner, banner1, banner2, banner3 
 
-from exporters import exportar_assets, exportar_agents, exportar_vulnerabilidades 
+from exporters import exportar_assets, exportar_agents, exportar_vulnerabilidades
+from tuesday_api import exportar_patch_tuesday
 from utils import validar_credenciais, padronizar_excel_agents, inventario_software
 
 
 def main():
     parser = argparse.ArgumentParser(description="Exportador de Assets, Agents, Inventário de Software e Vulnerabilidades da Tenable")
     parser.add_argument('-c', '--cliente', help='Nome do cliente', required=False)
-    parser.add_argument('-t', '--tipo', choices=['assets', 'agents','inv', 'vuln'], help='Tipo de exportação', required=False)
+    parser.add_argument('-t', '--tipo', choices=['assets', 'agents', 'inv', 'vuln', 'tuesday'], help='Tipo de exportação', required=False)
     parser.add_argument('-f', '--filtro', choices=['offline', 'nogroup', 'all', 'compare'], help='Filtro para agentes', required=False)
     parser.add_argument('-p', '--padronizar',help='Caminho do arquivo CSV ou XLSX para padronizar a planilha Agents',required=False, metavar='ARQUIVO')
 
@@ -120,9 +121,10 @@ def main():
             print("\n[1] Exportar Assets")
             print("[2] Exportar Agents")
             print("[3] Software Inventory")
-            print("[4] Exportar Vulnerabilidades") 
+            print("[4] Exportar Vulnerabilidades")
+            print("[5] Exportar Patch Tuesday")
             tipo_input = input("\n \033[4mxtract\033[0m> ").strip()
-            
+
             if tipo_input == '1':
                 tipo = 'assets'
                 break
@@ -135,8 +137,11 @@ def main():
             elif tipo_input == '4':
                 tipo = 'vuln'
                 break
+            elif tipo_input == '5':
+                tipo = 'tuesday'
+                break
             else:
-                print("[\033[1;31m!\033[m] Tipo de exportação inválido. Por favor, escolha 1, 2, 3 ou 4.")
+                print("[\033[1;31m!\033[m] Tipo de exportação inválido. Por favor, escolha 1, 2, 3, 4 ou 5.")
 
     if tipo == 'assets':
         exportar_assets(tio, output_folder, cliente, assets_data=assets) 
@@ -168,6 +173,8 @@ def main():
         exportar_agents(tio, output_folder, cliente, filtro=filtro, agents_data=agentes) 
     elif tipo == 'inv':
         inventario_software(access_key, secret_key, output_folder, cliente)
+    elif tipo == 'tuesday':
+        exportar_patch_tuesday(tio, output_folder, cliente)
     elif tipo == 'vuln':
         severidade = args.s
         ultimos_dias = args.d
